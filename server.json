@@ -1,0 +1,20 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-10-17/server.schema.json",
+  "name": "io.github.hyperpolymath/poly-secret-mcp",
+  "title": "Polyglot Secrets MCP",
+  "description": "Unified MCP server for secrets management: Vault, Infisical, SOPS, Doppler, 1Password. Securely manage secrets from your AI assistant.",
+  "repository": {
+    "url": "https://github.com/hyperpolymath/poly-secret-mcp",
+    "source": "github"
+  },
+  "version": "1.0.0",
+  "packages": [
+    {
+      "registryType": "oci",
+      "identifier": "ghcr.io/hyperpolymath/poly-secret-mcp:main",
+      "transport": {
+        "type": "stdio"
+      }
+    }
+  ]
+}
