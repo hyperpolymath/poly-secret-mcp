@@ -1,217 +1,101 @@
-= RSR Template Repository
+= poly-secret-mcp
 :toc:
-:sectnums:
+:toc-placement!:
 
-// Badges
-image:https://img.shields.io/badge/RSR-Infrastructure-cd7f32[RSR Infrastructure]
-image:https://img.shields.io/badge/Phase-Maintenance-brightgreen[Phase]
-image:https://img.shields.io/badge/License-AGPL%20OR%20Palimpsest-blue[License]
-image:https://img.shields.io/badge/Guix-Primary-purple?logo=gnu[Guix]
+image:https://img.shields.io/badge/RSR-compliant-gold[RSR Compliant,link=https://github.com/hyperpolymath/rhodium-standard-repositories]
+image:https://img.shields.io/badge/MCP-server-blue[MCP Server,link=https://github.com/modelcontextprotocol]
+image:https://img.shields.io/badge/license-MIT-green[License]
+
+Unified MCP server for secrets management. Provides Model Context Protocol tools for managing secrets through HashiCorp Vault and Mozilla SOPS.
+
+toc::[]
 
 == Overview
 
-**The canonical template for RSR (Rhodium Standard Repository) projects.**
+poly-secret-mcp exposes secrets management capabilities through the Model Context Protocol (MCP), enabling AI assistants and other MCP clients to securely manage secrets, encryption, and key rotation.
 
-This repository provides the standardized structure, configuration, and tooling for all 139 repos in the hyperpolymath ecosystem. Use it to:
+== Adapters
 
-* Bootstrap new projects with RSR compliance
-* Reference the standard directory structure
-* Copy configuration templates (justfile, STATE.scm, etc.)
+=== HashiCorp Vault (11 tools)
+Enterprise secrets management:
 
-== Quick Start
+* `vault_status` - Check Vault server status
+* `vault_read` - Read secrets from path
+* `vault_write` - Write secrets to path
+* `vault_delete` - Delete secrets
+* `vault_list` - List secrets at path
+* `vault_token_lookup` - Look up current token info
+* `vault_secrets_enable` - Enable secrets engine
+* `vault_secrets_list` - List enabled secrets engines
+* `vault_auth_list` - List auth methods
+* `vault_policy_list` - List policies
+* `vault_policy_read` - Read policy details
 
-[source,bash]
-----
-# Clone the template
-git clone https://github.com/hyperpolymath/RSR-template-repo my-project
-cd my-project
+=== Mozilla SOPS (7 tools)
+File-based secrets encryption:
 
-# Remove template git history
-rm -rf .git
-git init
+* `sops_decrypt` - Decrypt a file
+* `sops_encrypt` - Encrypt a file
+* `sops_set` - Set a value in encrypted file
+* `sops_rotate` - Rotate data encryption keys
+* `sops_metadata` - Show file metadata
+* `sops_updatekeys` - Update keys in file
+* `sops_version` - Show SOPS version
 
-# Customize
-sed -i 's/RSR-template-repo/my-project/g' justfile guix.scm README.adoc
+== Requirements
 
-# Enter development environment
-guix shell -D -f guix.scm
+* https://deno.land/[Deno] runtime
+* https://www.vaultproject.io/[HashiCorp Vault] CLI (for Vault tools)
+* https://github.com/getsops/sops[SOPS] CLI (for SOPS tools)
 
-# Validate compliance
-just validate-rsr
-----
+== Configuration
 
-== What's Included
-
-[cols="1,3"]
-|===
-|File/Directory |Purpose
-
-|`.editorconfig`
-|Editor configuration (indent, charset)
-
-|`.gitignore`
-|Standard ignore patterns
-
-|`.guix-channel`
-|Guix channel definition
-
-|`.well-known/`
-|RFC-compliant metadata (security.txt, ai.txt, humans.txt)
-
-|`docs/`
-|Documentation directory
-
-|`guix.scm`
-|Guix package definition
-
-|`justfile`
-|Task runner with 50+ recipes
-
-|`LICENSE.txt`
-|AGPL + Palimpsest dual license
-
-|`README.adoc`
-|This file
-
-|`RSR_COMPLIANCE.adoc`
-|Compliance tracking
-
-|`STATE.scm`
-|Project state checkpoint
-|===
-
-== Justfile Features
-
-The template justfile provides:
-
-* **~10 billion recipe combinations** via matrix recipes
-* **Cookbook generation**: `just cookbook` → `docs/just-cookbook.adoc`
-* **Man page generation**: `just man` → `docs/man/project.1`
-* **RSR validation**: `just validate-rsr`
-* **STATE.scm management**: `just state-touch`, `just state-phase`
-* **Container support**: `just container-build`, `just container-push`
-* **CI matrix**: `just ci-matrix [stage] [depth]`
-
-=== Key Recipes
+=== Vault
 
 [source,bash]
 ----
-just                # Show all recipes
-just help <recipe>  # Detailed help
-just info           # Project info
-just combinations   # Show matrix options
-
-just build          # Build (debug)
-just test           # Run tests
-just quality        # Format + lint + test
-just ci             # Full CI pipeline
-
-just validate       # RSR + STATE validation
-just docs           # Generate all docs
-just cookbook       # Generate justfile docs
-
-just guix-shell     # Guix dev environment
-just container-build # Build container
+export VAULT_ADDR=http://127.0.0.1:8200
+export VAULT_TOKEN=your-token
 ----
 
-== Directory Structure
+=== SOPS
 
-[source]
-----
-project/
-├── .editorconfig          # Editor settings
-├── .gitignore             # Git ignore
-├── .guix-channel          # Guix channel
-├── .well-known/           # RFC metadata
-│   ├── ai.txt
-│   ├── humans.txt
-│   └── security.txt
-├── config/                # Nickel configs (optional)
-├── docs/                  # Documentation
-│   ├── generated/
-│   ├── man/
-│   └── just-cookbook.adoc
-├── guix.scm               # Guix package
-├── justfile               # Task runner
-├── LICENSE.txt            # Dual license
-├── README.adoc            # Overview
-├── RSR_COMPLIANCE.adoc    # Compliance
-├── src/                   # Source code
-├── STATE.scm              # State checkpoint
-└── tests/                 # Tests
-----
+Configure `.sops.yaml` in your project root for encryption keys (age, AWS KMS, GCP KMS, Azure Key Vault, or PGP).
 
-== RSR Compliance
-
-=== Language Tiers
-
-* **Tier 1** (Gold): Rust, Elixir, Zig, Ada, Haskell, ReScript
-* **Tier 2** (Silver): Nickel, Racket, Guile Scheme, Nix
-* **Infrastructure**: Guix channels, derivations
-
-=== Required Files
-
-* `.editorconfig`
-* `.gitignore`
-* `justfile`
-* `README.adoc`
-* `RSR_COMPLIANCE.adoc`
-* `LICENSE.txt` (AGPL + Palimpsest)
-* `.well-known/security.txt`
-* `.well-known/ai.txt`
-* `.well-known/humans.txt`
-* `guix.scm` OR `flake.nix`
-
-=== Prohibited
-
-* Python outside `salt/` directory
-* TypeScript/JavaScript (use ReScript)
-* CUE (use Guile/Nickel)
-* `Dockerfile` (use `Containerfile`)
-
-== STATE.scm
-
-The STATE.scm file tracks project state:
-
-[source,scheme]
-----
-(define state
-  `((metadata
-     (project . "my-project")
-     (updated . "2025-12-10"))
-    (position
-     (phase . implementation)  ; design|implementation|testing|maintenance|archived
-     (maturity . beta))        ; experimental|alpha|beta|production|lts
-    (ecosystem
-     (part-of . ("RSR Framework"))
-     (depends-on . ()))))
-----
-
-== Badge Schema
-
-Generate badges from STATE.scm:
+== Installation
 
 [source,bash]
 ----
-just badges standard
+git clone https://github.com/hyperpolymath/poly-secret-mcp
+cd poly-secret-mcp
+npm install
+npm run build
 ----
 
-See `docs/BADGE_SCHEMA.adoc` for the full badge taxonomy.
+== Usage
 
-== Ecosystem Integration
+Run as MCP server:
 
-This template is part of:
+[source,bash]
+----
+deno run --allow-run --allow-read --allow-env main.js
+----
 
-* **STATE.scm Ecosystem**: Conversation checkpoints
-* **RSR Framework**: Repository standards
-* **Consent-Aware-HTTP**: .well-known compliance
+Or use the systemd service:
+
+[source,bash]
+----
+systemctl --user enable poly-secret-mcp
+systemctl --user start poly-secret-mcp
+----
+
+== Security Considerations
+
+* Never log or expose secret values in error messages
+* Use short-lived tokens when possible
+* Audit all secrets access
+* Rotate keys regularly
 
 == License
 
-SPDX-License-Identifier: `AGPL-3.0-or-later OR LicenseRef-Palimpsest-0.5`
-
-== Links
-
-* https://github.com/hyperpolymath/elegant-STATE[elegant-STATE] - STATE.scm tooling
-* https://github.com/hyperpolymath/conative-gating[conative-gating] - Policy enforcement
-* https://rhodium.sh[Rhodium Standard] - RSR documentation
+MIT
