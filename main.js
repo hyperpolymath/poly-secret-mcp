@@ -7,11 +7,10 @@ import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio.js"
 
 // Import ReScript compiled adapters
 import * as Vault from "./lib/es6/src/adapters/Vault.res.js";
-// import * as Infisical from "./lib/es6/src/adapters/Infisical.res.js";
-// import * as SOPS from "./lib/es6/src/adapters/SOPS.res.js";
+import * as SOPS from "./lib/es6/src/adapters/SOPS.res.js";
 
-const VERSION = "1.0.0";
-const adapters = [Vault];
+const VERSION = "1.1.0";
+const adapters = [Vault, SOPS];
 
 async function main() {
   const server = new McpServer({
