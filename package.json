@@ -1,13 +1,16 @@
 {
   "name": "poly-secret-mcp",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Unified MCP server for secrets management: Vault, Infisical, SOPS, Doppler, 1Password",
-  "main": "index.js",
+  "main": "main.js",
   "type": "module",
   "author": "Jonathan D.A. Jewell",
   "license": "MIT",
   "repository": {
     "type": "git",
     "url": "https://github.com/hyperpolymath/poly-secret-mcp.git"
+  },
+  "engines": {
+    "deno": ">=2.0.0"
   }
 }
