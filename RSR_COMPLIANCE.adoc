@@ -1,10 +1,10 @@
-= RSR Compliance: RSR-template-repo
+= RSR Compliance: poly-secret-mcp
 :toc:
 :sectnums:
 
 == Overview
 
-This document describes the Rhodium Standard Repository (RSR) compliance status for *RSR-template-repo*.
+This document describes the Rhodium Standard Repository (RSR) compliance status for *poly-secret-mcp*.
 
 == Classification
 
@@ -12,11 +12,11 @@ This document describes the Rhodium Standard Repository (RSR) compliance status 
 |===
 |Attribute |Value
 
-|Project |RSR-template-repo
-|Primary Language |unknown
-|RSR Tier |N/A
-|Compliance Status |Review Needed
-|Last Updated |2025-12-10
+|Project |poly-secret-mcp
+|Primary Language |ReScript
+|RSR Tier |Tier 1
+|Compliance Status |Compliant
+|Last Updated |2025-12-17
 |===
 
 == Language Tier Classification
@@ -27,7 +27,7 @@ This document describes the Rhodium Standard Repository (RSR) compliance status 
 * Zig
 * Ada
 * Haskell
-* ReScript
+* ReScript ✓ (Primary)
 
 === Tier 2 Languages (Acceptable)
 * Nickel (configuration)
@@ -46,28 +46,43 @@ This document describes the Rhodium Standard Repository (RSR) compliance status 
 |===
 |Requirement |Status |Notes
 
-|Primary language is Tier 1/2 |✓ |unknown
-|No restricted languages outside exemptions |✓ |
+|Primary language is Tier 1/2 |✓ |ReScript (Tier 1)
+|No restricted languages outside exemptions |✓ |JS is compiled output only
 |.editorconfig present |✓ |
-|.well-known/ directory |✓ |
-|justfile present |✗ |
-|LICENSE.txt (AGPL + Palimpsest) |✓ |
-|Containerfile present |✗ |
-|flake.nix present |✗ |
+|.well-known/ directory |✓ |aibdp.json, provenance.json, dc.xml
+|justfile present |✓ |RSR Standard template
+|LICENSE.txt (MIT) |✓ |
+|Containerfile present |✓ |Chainguard Wolfi base
+|guix.scm present |✓ |Primary package manager
+|deno.json present |✓ |Runtime config, no npm
+|Security CI workflows |✓ |CodeQL, Trivy, Gitleaks
+|===
+
+== Security Controls
+
+[cols="1,1"]
+|===
+|Control |Status
+
+|No MD5/SHA1 for security |✓ CI enforced
+|HTTPS only (except localhost) |✓ CI enforced
+|No hardcoded secrets |✓ CI enforced
+|Non-root container |✓ UID 1000
+|Dependency lockfiles |✓ deno.lock
+|SBOM ready |✓ CodeMeta, SPDX
 |===
 
 == Exemptions
 
-None
+* JavaScript output files in `lib/es6/` - Compiled from ReScript, not hand-written
 
 == Action Items
 
-* Add justfile
-* Add Containerfile
-* Add flake.nix
+* None - Project is RSR compliant
 
 == References
 
-* link:https://github.com/hyperpolymath/RSR-template-repo[RSR Template Repository]
-* link:../CONTRIBUTING.adoc[Contributing Guidelines]
-* link:../CODE_OF_CONDUCT.adoc[Code of Conduct]
+* link:https://github.com/hyperpolymath/poly-secret-mcp[poly-secret-mcp Repository]
+* link:CONTRIBUTING.adoc[Contributing Guidelines]
+* link:CODE_OF_CONDUCT.md[Code of Conduct]
+* link:SECURITY.md[Security Policy]
