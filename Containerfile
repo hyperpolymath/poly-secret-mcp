@@ -4,7 +4,7 @@
 # poly-secret-mcp - Wolfi Base (Primary)
 # Minimal, secure container image using Wolfi (FOSS, no auth required)
 
-FROM ghcr.io/wolfi-dev/wolfi-base:latest
+FROM cgr.dev/chainguard/wolfi-base:latest
 
 LABEL org.opencontainers.image.title="poly-secret-mcp"
 LABEL org.opencontainers.image.description="Multi-backend secrets MCP server (Vault, Infisical, SOPS, Doppler, 1Password)"
