@@ -2,12 +2,12 @@
 // SPDX-FileCopyrightText: 2025 Jonathan D.A. Jewell
 // main.js - Entry shim for poly-secret-mcp (ReScript compiled)
 
-import { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
-import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio.js";
+import { McpServer } from "@modelcontextprotocol/sdk/server/mcp.res.js";
+import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio.res.js";
 
 // Import ReScript compiled adapters
-import * as Vault from "./lib/es6/src/adapters/Vault.res.js";
-import * as SOPS from "./lib/es6/src/adapters/SOPS.res.js";
+import * as Vault from "./lib/es6/src/adapters/Vault.res.res.js";
+import * as SOPS from "./lib/es6/src/adapters/SOPS.res.res.js";
 
 const VERSION = "1.1.0";
 const adapters = [Vault, SOPS];
