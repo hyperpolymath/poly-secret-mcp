@@ -16,9 +16,7 @@
     "@rescript/runtime": "npm:@rescript/runtime@12.0.1",
     "@modelcontextprotocol/sdk/server/mcp.js": "npm:@modelcontextprotocol/sdk@1.24.3/server/mcp.js",
     "@modelcontextprotocol/sdk/server/stdio.js": "npm:@modelcontextprotocol/sdk@1.24.3/server/stdio.js",
-    "@modelcontextprotocol/sdk/": "npm:@modelcontextprotocol/sdk@1.24.3/",
-    "rescript": "npm:rescript@12.0.1",
-    "@rescript/runtime/": "npm:@rescript/runtime/"
+    "rescript": "npm:rescript@12.0.1"
   },
   "compilerOptions": {
     "lib": [
