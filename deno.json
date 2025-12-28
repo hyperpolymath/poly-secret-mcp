@@ -2,7 +2,7 @@
   "name": "poly-secret-mcp",
   "version": "1.1.0",
   "exports": "./main.js",
-  "nodeModulesDir": true,
+  "nodeModulesDir": "auto",
   "tasks": {
     "start": "deno run --allow-net --allow-read --allow-write --allow-env --allow-run main.js",
     "dev": "deno run --watch --allow-net --allow-read --allow-write --allow-env --allow-run main.js",
@@ -16,7 +16,9 @@
     "@rescript/runtime": "npm:@rescript/runtime@12.0.1",
     "@modelcontextprotocol/sdk/server/mcp.js": "npm:@modelcontextprotocol/sdk@1.24.3/server/mcp.js",
     "@modelcontextprotocol/sdk/server/stdio.js": "npm:@modelcontextprotocol/sdk@1.24.3/server/stdio.js",
-    "rescript": "npm:rescript@12.0.1"
+    "rescript": "npm:rescript@12.0.1",
+    "@rescript/runtime/": "npm:@rescript/runtime@12.0.2/",
+    "@modelcontextprotocol/sdk/": "npm:@modelcontextprotocol/sdk@1.24.3/"
   },
   "compilerOptions": {
     "lib": [
