@@ -11,7 +11,6 @@
 | **Rust** | Performance-critical, systems, WASM | Preferred for CLI tools |
 | **Bash/POSIX Shell** | Scripts, automation | Keep minimal |
 | **JavaScript** | Only where ReScript cannot | MCP protocol glue, Deno APIs |
-| **Python** | SaltStack only | No other Python permitted |
 | **Nickel** | Configuration language | For complex configs |
 | **Guile Scheme** | State/meta files | STATE.scm, META.scm, ECOSYSTEM.scm |
 
@@ -25,7 +24,7 @@
 | Bun | Deno |
 | pnpm/yarn | Deno |
 | Go | Rust |
-| Python (general) | ReScript/Rust |
+| Python | Julia/Rust/ReScript |
 | Java/Kotlin | Rust |
 
 ### Enforcement Rules
@@ -34,7 +33,7 @@
 2. **No package.json for runtime deps** - Use deno.json imports
 3. **No node_modules in production** - Deno caches deps automatically
 4. **No Go code** - Use Rust instead
-5. **Python only for SaltStack** - All other Python must be rewritten
+5. **No Python anywhere** - Use Julia for data/batch, Rust for systems, ReScript for apps
 
 ### ReScript Conventions
 
