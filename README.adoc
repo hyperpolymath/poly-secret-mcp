@@ -4,8 +4,10 @@
 
 image:https://img.shields.io/badge/RSR-compliant-gold[RSR Compliant,link=https://github.com/hyperpolymath/rhodium-standard-repositories]
 image:https://img.shields.io/badge/MCP-server-blue[MCP Server,link=https://github.com/modelcontextprotocol]
-image:https://img.shields.io/badge/license-MIT-green[License]
+image:[License,link="https://github.com/hyperpolymath/palimpsest-license"]
 
+// SPDX-License-Identifier: PMPL-1.0
+// SPDX-FileCopyrightText: 2025 hyperpolymath
 Unified MCP server for secrets management. Provides Model Context Protocol tools for managing secrets through HashiCorp Vault and Mozilla SOPS.
 
 toc::[]
